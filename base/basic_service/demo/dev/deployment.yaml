@@ -1,25 +1,25 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: demo
-  labels:
-    org: brand
-    env: dev
-spec:
-  selector:
-    matchLabels:
-      app: demo
-      env: dev
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: demo
-        org: brand
-        env: dev
-    spec:
-      containers:
-        - name: demo
-          image: 10.101.2.123/library/demo:v1.7
-          ports:
-            - containerPort: 9060
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: demo
+#  labels:
+#    org: brand
+#    env: dev
+#spec:
+#  selector:
+#    matchLabels:
+#      app: demo
+#      env: dev
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: demo
+#        org: brand
+#        env: dev
+#    spec:
+#      containers:
+#        - name: demo
+#          image: 10.101.2.123/library/demo:v1.7
+#          ports:
+#            - containerPort: 9060
