@@ -1,25 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo
+  creationTimestamp: null
   labels:
-    org: brand
     env: dev
+    org: brand
+  name: demo
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: demo
       env: dev
-  replicas: 3
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: demo
-        org: brand
         env: dev
+        org: brand
     spec:
       containers:
-        - name: demo
-          image: 10.101.2.123/library/demo:v1.7
-          ports:
-            - containerPort: 9060
+      - image: 10.101.2.123/library/demo:v1.7
+        name: demo
+        ports:
+        - containerPort: 9060
+        resources: {}
+status: {}
