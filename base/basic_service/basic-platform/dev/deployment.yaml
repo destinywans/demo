@@ -22,7 +22,7 @@ spec:
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/basic-platform:20230427160343
+      - image: 10.101.2.123/library/basic-platform:20230427172004
         name: basic-platform
         ports:
         - containerPort: 8080
