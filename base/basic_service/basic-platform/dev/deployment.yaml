@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    env: dev
+    org: brand
+  name: basic-platform
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: basic-platform
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: basic-platform
+        env: dev
+        org: brand
+    spec:
+      containers:
+      - image: 10.101.2.123/library/basic-platform:v1.0
+        name: basic-platform
+        ports:
+        - containerPort: 8080
