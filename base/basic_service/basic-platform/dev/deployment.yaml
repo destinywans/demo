@@ -15,7 +15,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      creationTimestamp: "2023-04-27T09:28:52Z"
       labels:
         app: basic-platform
         env: dev
