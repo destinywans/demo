@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     env: dev
     org: brand
@@ -14,14 +15,16 @@ spec:
   strategy: {}
   template:
     metadata:
+      creationTimestamp: "2023-04-27T06:05:07Z"
       labels:
         app: demo
         env: dev
         org: brand
     spec:
       containers:
-        - image: 10.101.2.123/library/demo:v1.7
-          name: demo
-          ports:
-            - containerPort: 9060
-          resources: {}
+      - image: 10.101.2.123/library/demo:v1.7
+        name: demo
+        ports:
+        - containerPort: 9060
+        resources: {}
+status: {}
