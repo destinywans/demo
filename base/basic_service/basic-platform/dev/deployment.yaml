@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     env: dev
     org: brand
@@ -11,15 +12,19 @@ spec:
     matchLabels:
       app: basic-platform
       env: dev
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: basic-platform
         env: dev
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/basic-platform:v1.0
+      - image: 10.101.2.123/library/basic-platform:20230427160343
         name: basic-platform
         ports:
         - containerPort: 8080
+        resources: {}
+status: {}
