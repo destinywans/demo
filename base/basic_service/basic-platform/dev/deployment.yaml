@@ -6,7 +6,7 @@ metadata:
     org: brand
   name: basic-platform
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: basic-platform
