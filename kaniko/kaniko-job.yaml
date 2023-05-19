@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: kaniko
-        image: gcr.io/kaniko-project/executor:latest
+        image: 10.101.2.123/library/kaniko-project/executor:latest
         args:
         - "--dockerfile=/base/basic_service/demo/Dockerfile"
         - "--git@10.101.1.50:2222/base/devops-config.git#main"
