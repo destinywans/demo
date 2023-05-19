@@ -5,26 +5,26 @@ metadata:
   labels:
     env: dev
     org: brand
-  name: demo
+  name: basic-platform
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
-      app: demo
+      app: basic-platform
       env: dev
   strategy: {}
   template:
     metadata:
-      creationTimestamp: "2023-04-27T10:04:17Z"
+      creationTimestamp: "2023-04-27T09:29:35Z"
       labels:
-        app: demo
+        app: basic-platform
         env: dev
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/demo:20230427151743
-        name: demo
+      - image: 10.101.2.123/library/basic-platform:20230427172004
+        name: basic-platform
         ports:
-        - containerPort: 9060
+        - containerPort: 8080
         resources: {}
 status: {}
