@@ -15,16 +15,16 @@ spec:
 #        - --build-arg=SOME_VARIABLE=somevalue
 #        - --progress=plain
         volumeMounts:
-        - name: gitlab-config
-          mountPath: /root/.gitconfig
+        - name: gitlab-ssh-key
+          mountPath: /root/.ssh
         - name: harbor-creds
           mountPath: /kaniko/.docker
         - name: kaniko-maven-build
           mountPath: /app/maven
       volumes:
-      - name: gitlab-config
+      - name: gitlab-ssh-key
         secret:
-          secretName: gitlab-config
+          secretName: gitlab-ssh-key
       - name: harbor-creds
         secret:
           secretName: harbor-creds
