@@ -15,7 +15,7 @@ spec:
 #        - "--build-arg=SOME_VARIABLE=somevalue"
 #        - --progress=plain
         volumeMounts:
-        - name: git-config
+        - name: gitlab-config
           mountPath: /root/.gitconfig
         - name: harbor-creds
           mountPath: /kaniko/.docker
