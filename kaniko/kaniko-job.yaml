@@ -23,8 +23,8 @@ spec:
           mountPath: /app/maven
       volumes:
       - name: gitlab-config
-        configMap:
-          name: gitlab-config
+        secret:
+          secretName: gitlab-config
       - name: harbor-creds
         secret:
           secretName: harbor-creds
