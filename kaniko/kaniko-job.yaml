@@ -36,4 +36,4 @@ spec:
           persistentVolumeClaim:
             claimName: kaniko-maven-build
       restartPolicy: Never
-  backoffLimit: 1
+  backoffLimit: 0
