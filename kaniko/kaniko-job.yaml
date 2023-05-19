@@ -9,10 +9,10 @@ spec:
       - name: kaniko
         image: 10.101.2.123/library/kaniko-project/executor:latest
         args:
-        - "--dockerfile=/base/basic_service/demo/Dockerfile"
-        - "--git@10.101.1.50:2222/base/devops-config.git#main"
-        - "--destination=10.101.2.123/library/demo:v2.1"
-#        - "--build-arg=SOME_VARIABLE=somevalue"
+        - --dockerfile=/base/basic_service/demo/Dockerfile
+        - --git@10.101.1.50:2222/base/devops-config.git#main
+        - --destination=10.101.2.123/library/demo:v2.1
+#        - --build-arg=SOME_VARIABLE=somevalue
 #        - --progress=plain
         volumeMounts:
         - name: gitlab-config
