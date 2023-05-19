@@ -10,10 +10,14 @@ spec:
         image: 10.101.2.123/library/kaniko-project/executor:latest
         args:
         - --dockerfile=base/basic_service/demo/Dockerfile
-        - --context=git@10.101.1.50:2222/base/devops-config.git#main
+        - --context=git@10.101.1.50:2222/base/devops-config.git
         - --destination=10.101.2.123/library/demo:v2.1
-#        - --build-arg=SOME_VARIABLE=somevalue
-#        - --progress=plain
+        - --git=branch=main
+        - --skip-tls-verify=true
+        - --skip-tls-verify-pull=true
+        - --insecure=true
+        - --insecure-pull=true
+        - --insecure-registry=http://10.101.2.123
         volumeMounts:
         - name: gitlab-ssh-key
           mountPath: /root/.ssh
