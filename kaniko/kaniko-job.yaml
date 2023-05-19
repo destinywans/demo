@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kaniko
+spec:
+  template:
+    spec:
+      containers:
+      - name: kaniko
+        image: gcr.mirrors.ustc.edu.cn/kaniko-project/executor:latest
+        args:
+        - "--dockerfile=/base/basic_service/demo/Dockerfile"
+        - "--git@10.101.1.50:2222/base/devops-config.git#main"
+        - "--destination=10.101.2.123/library/demo:v2.1"
+#        - "--build-arg=SOME_VARIABLE=somevalue"
+#        - --progress=plain
+        volumeMounts:
+        - name: git-config
+          mountPath: /root/.gitconfig
+        - name: harbor-creds
+          mountPath: /kaniko/.docker
+        - name: kaniko-maven-build
+          mountPath: /app/maven
+      volumes:
+      - name: gitlab-config
+        configMap:
+          name: gitlab-config
+      - name: harbor-creds
+        secret:
+          secretName: harbor-creds
+      - name: kaniko-maven-build
+        persistentVolumeClaim:
+          claimName: kaniko-maven-build
+      restartPolicy: Never
+  backoffLimit: 4

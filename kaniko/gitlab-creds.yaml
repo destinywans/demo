@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-config
+type: Opaque
+stringData:
+  .gitconfig: |
+    [url "http://oauth2:pZfwDAuSb4RA4uk1ZiRa@gitlab.com"]
+        insteadOf = http://10.101.1.50:8888
