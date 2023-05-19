@@ -6,34 +6,34 @@ spec:
   template:
     spec:
       containers:
-      - name: kaniko
-        image: 10.101.2.123/library/kaniko-project/executor:latest
-        args:
-        - --dockerfile=base/basic_service/demo/Dockerfile
-        - --context=git://10.101.1.50/base/devops-config.git
-        - --destination=10.101.2.123/library/demo:v2.1
-        - --git=branch=main
-        - --skip-tls-verify=true
-        - --skip-tls-verify-pull=true
-        - --insecure=true
-        - --insecure-pull=true
-        - --insecure-registry=http://10.101.2.123
-        volumeMounts:
-        - name: gitlab-ssh-key
-          mountPath: /root/.ssh
-        - name: harbor-creds
-          mountPath: /kaniko/.docker
-        - name: kaniko-maven-build
-          mountPath: /app/maven
+        - name: kaniko
+          image: 10.101.2.123/library/kaniko-project/executor:latest
+          args:
+            - --dockerfile=base/basic_service/demo/Dockerfile
+            - --context=git://10.101.1.50/base/devops-config.git
+            - --destination=10.101.2.123/library/demo:v2.1
+            - --git=branch=main
+            - --skip-tls-verify=true
+            - --skip-tls-verify-pull=true
+            - --insecure=true
+            - --insecure-pull=true
+            - --insecure-registry=http://10.101.2.123
+          volumeMounts:
+            - name: gitlab-ssh-key
+              mountPath: /root/.ssh
+            - name: harbor-creds
+              mountPath: /kaniko/.docker
+            - name: kaniko-maven-build
+              mountPath: /app/maven
       volumes:
-      - name: gitlab-ssh-key
-        secret:
-          secretName: gitlab-ssh-key
-      - name: harbor-creds
-        secret:
-          secretName: harbor-creds
-      - name: kaniko-maven-build
-        persistentVolumeClaim:
-          claimName: kaniko-maven-build
+        - name: gitlab-ssh-key
+          secret:
+            secretName: gitlab-ssh-key
+        - name: harbor-creds
+          secret:
+            secretName: harbor-creds
+        - name: kaniko-maven-build
+          persistentVolumeClaim:
+            claimName: kaniko-maven-build
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 1
