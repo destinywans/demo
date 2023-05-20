@@ -12,8 +12,10 @@ metadata:
       * Cache restore and store.
       * Publishing test reports.
 spec:
-  podGC:
-    strategy: OnWorkflowCompletion
+  ttlstrategy:
+    secondsAfterCompletion: 300
+#  podGC:
+#    strategy: OnWorkflowCompletion
   arguments:
     parameters:
       - name: branch
@@ -26,7 +28,7 @@ spec:
         name: ci
       spec:
         accessModes: [ ReadWriteOnce ]
-        storageClassName: ci
+        storageClassName: ""
         resources:
           requests:
             storage: 1Gi
@@ -62,37 +64,34 @@ spec:
             git clone -v -b "{{workflow.parameters.branch}}" --single-branch --depth 1 http://wansheng:$GITLAB_ACCESS_TOKEN@10.101.1.50/base/basic_service/demo.git .
 
     - name: build
-      containers:
-        - name: kaniko
-          image: 10.101.2.123/library/kaniko-project/executor:latest
-          args:
-            - --dockerfile=Dockerfile
-            - --context=dir:///mnt
-            - --destination=10.101.2.123/library/demo:v2.1
-            - --skip-tls-verify=true
-            - --skip-tls-verify-pull=true
-            - --insecure=true
-            - --insecure-pull=true
-            - --insecure-registry=http://10.101.2.123
-          volumeMounts:
-            - mountPath: /app
-              name: demo-mount
-              subPath: code
-            - name: demo-mount
-              mountPath: /mnt
-              subPath: dockerfile
-            - name: harbor-creds
-              mountPath: /kaniko/.docker
-#            - name: demo-mount
-#              mountPath: /app/demo
-#              subPath: app/demo
-      volumes:
-        - name: demo-mount
-          persistentVolumeClaim:
-            claimName: ci
-        - name: harbor-creds
-          secret:
-            secretName: harbor-creds
-            items:
-              - key: .dockerconfigjson
-                path: config.json
+      container:
+        name: kaniko
+        image: 10.101.2.123/library/kaniko-project/executor:latest
+        args:
+          - --dockerfile=Dockerfile
+          - --context=dir:///mnt
+          - --destination=10.101.2.123/library/demo:v2.1
+          - --skip-tls-verify=true
+          - --skip-tls-verify-pull=true
+          - --insecure=true
+          - --insecure-pull=true
+          - --insecure-registry=http://10.101.2.123
+        volumeMounts:
+          - mountPath: /app
+            name: demo-mount
+            subPath: code
+          - name: demo-mount
+            mountPath: /mnt
+            subPath: dockerfile
+          - name: harbor-creds
+            mountPath: /kaniko/.docker
+  volumes:
+    - name: demo-mount
+      persistentVolumeClaim:
+        claimName: ci
+    - name: harbor-creds
+      secret:
+        secretName: harbor-creds
+        items:
+          - key: .dockerconfigjson
+            path: config.json

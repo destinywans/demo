@@ -8,6 +8,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: ci
+  storageClassName: ""
   hostPath:
     path: /data/share/ci
