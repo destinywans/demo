@@ -19,16 +19,16 @@ spec:
             - --insecure-pull=true
             - --insecure-registry=http://10.101.2.123
           volumeMounts:
-            - name: load-dockerfile
+            - name: load-dockerfile-pv
               mountPath: /mnt
             - name: harbor-creds
               mountPath: /kaniko/.docker
             - name: kaniko-maven-build
               mountPath: /app/maven
       volumes:
-        - name: load-dockerfile
+        - name: load-dockerfile-pv
           persistentVolumeClaim:
-            claimName: load-dockerfile
+            claimName: load-dockerfile-pv
         - name: harbor-creds
           secret:
             secretName: harbor-creds
