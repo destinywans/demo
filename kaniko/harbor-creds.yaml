@@ -4,4 +4,4 @@ metadata:
   name: harbor-creds
 type: kubernetes.io/dockerconfigjson
 data:
-  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwOi8vMTAuMTAxLjIuMTIzIjogewoJCQkiYXV0aCI6ICJZV1J0YVc0NlluSmhibVJBTWpBeU1nPT0iCgkJfQoJfQp9Cg==
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwOi8vMTAuMTAxLjIuMTIzIjogewoJCQkidXNlcm5hbWUiOiAiYWRtaW4iLAoJCQkicGFzc3dvcmQiOiAiYnJhbmRAMjAyMiIKCQkJImF1dGgiOiAiWVdSdGFXNDZZbkpoYm1SQU1qQXlNZz09IgoJCX0KCX0KfQo=

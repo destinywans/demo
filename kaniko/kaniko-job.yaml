@@ -12,7 +12,6 @@ spec:
             - --dockerfile=Dockerfile
             - --context=dir:///mnt
             - --destination=10.101.2.123/library/demo:v2.1
-            - --git=branch=main
             - --skip-tls-verify=true
             - --skip-tls-verify-pull=true
             - --insecure=true
@@ -32,6 +31,9 @@ spec:
         - name: harbor-creds
           secret:
             secretName: harbor-creds
+            items:
+              - key: .dockerconfigjson
+                path: config.json
         - name: kaniko-maven-build
           persistentVolumeClaim:
             claimName: kaniko-maven-build
