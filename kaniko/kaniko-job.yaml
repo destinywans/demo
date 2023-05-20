@@ -9,7 +9,7 @@ spec:
         - name: kaniko
           image: 10.101.2.123/library/kaniko-project/executor:latest
           args:
-            - --dockerfile=base/basic_service/demo/Dockerfile
+            - --dockerfile=Dockerfile
             - --context=dir:///mnt
             - --destination=10.101.2.123/library/demo:v2.1
             - --git=branch=main
