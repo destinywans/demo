@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: harbor-creds
+  namespace: argo
 type: kubernetes.io/dockerconfigjson
 data:
   .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwOi8vMTAuMTAxLjIuMTIzIjogewoJCQkiYXV0aCI6ICJZV1J0YVc0NlluSmhibVJBTWpBeU1nPT0iCgkJfSwKCQkiaHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjogewogICAgICAJCSJhdXRoIjogIlpHVnpkR2x1ZVhkaGJuTTZaR05yY2w5d1lYUmZTbWh3Y1hCQ2VrVmxhVVJrWXpVeGEyVXdkMUJ6WVhsd2RqRTAiCiAgICAJfQoJfQp9Cg==
