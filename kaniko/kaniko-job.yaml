@@ -10,7 +10,7 @@ spec:
           image: 10.101.2.123/library/kaniko-project/executor:latest
           args:
             - --dockerfile=base/basic_service/demo/Dockerfile
-            - --context=git://10.101.1.50/base/devops-config.git
+            - --context=http://10.101.1.50/base/devops-config.git
             - --destination=10.101.2.123/library/demo:v2.1
             - --git=branch=main
             - --skip-tls-verify=true
