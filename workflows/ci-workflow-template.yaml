@@ -26,9 +26,10 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: ci
+        namespace: argo
       spec:
         accessModes: [ ReadWriteOnce ]
-        storageClassName: ""
+        storageClassName: openebs-hostpath
         resources:
           requests:
             storage: 1Gi
