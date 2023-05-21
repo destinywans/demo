@@ -23,16 +23,16 @@ spec:
 
   entrypoint: main
 
-  volumeClaimTemplates:
-    - metadata:
-        name: ci
-        namespace: argo
-      spec:
-        accessModes: [ ReadWriteOnce ]
-        storageClassName: openebs-hostpath
-        resources:
-          requests:
-            storage: 1Gi
+#  volumeClaimTemplates:
+#    - metadata:
+#        name: ci
+#        namespace: argo
+#      spec:
+#        accessModes: [ ReadWriteOnce ]
+#        storageClassName: openebs-hostpath
+#        resources:
+#          requests:
+#            storage: 1Gi
 
   templates:
     - name: main
@@ -54,7 +54,7 @@ spec:
                 name: gitlab-access-token
                 key: token
         volumeMounts:
-          - mountPath: /app
+          - mountPath: /app/code
             name: demo-mount
             subPath: code
         image: bitnami/git
@@ -62,7 +62,13 @@ spec:
         command: [ sh, -euxc ]
         args:
           - |
+            cd code
             git clone -v -b "{{workflow.parameters.branch}}" --single-branch --depth 1 http://wansheng:$GITLAB_ACCESS_TOKEN@10.101.1.50/base/basic_service/demo.git .
+            cd ../dockerfile
+            git clone -v -b main --single-branch --depth 1 http://wansheng:$GITLAB_ACCESS_TOKEN@10.101.1.50/base/devops-config.git .
+            cp base/basic_service/demo/Dockerfile ../code
+            cd ..
+            rm -rf dockerfile
 
     - name: build
       container:
@@ -70,7 +76,7 @@ spec:
         image: 10.101.2.123/library/kaniko-project/executor:latest
         args:
           - --dockerfile=Dockerfile
-          - --context=dir:///mnt
+          - --context=dir:///app
           - --destination=10.101.2.123/library/demo:v2.1
           - --skip-tls-verify=true
           - --skip-tls-verify-pull=true
@@ -81,9 +87,6 @@ spec:
           - mountPath: /app
             name: demo-mount
             subPath: code
-          - name: demo-mount
-            mountPath: /mnt
-            subPath: dockerfile
           - name: harbor-creds
             mountPath: /kaniko/.docker
   volumes:
