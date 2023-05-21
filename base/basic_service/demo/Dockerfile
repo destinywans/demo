@@ -8,7 +8,7 @@ WORKDIR /opt/ws
 
 EXPOSE 9060
 
-COPY /app/target/demo-product-1.0-SNAPSHOT.jar .
+COPY ./target/demo-product-1.0-SNAPSHOT.jar .
 
 ENTRYPOINT ["java", "-jar", "-Dfile.encoding=utf-8", "-Duser.timezone=GMT+08", "demo-product-1.0-SNAPSHOT.jar"]
 
