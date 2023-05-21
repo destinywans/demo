@@ -4,9 +4,9 @@ FROM 10.101.2.123/library/brand-maven-demo:v8 as builder
 
 WORKDIR /app
 
-COPY ./src .
+COPY /app/src /app
 
-COPY ./pom.xml .
+COPY /app/pom.xml /app
 
 RUN mvn clean package $MAVEN_EXT_PARAM | ts '[%Y-%m-%d %H:%M:%S]' | tee /app/maven/demo-build.log
 
