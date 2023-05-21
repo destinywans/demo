@@ -4,11 +4,13 @@ FROM 10.101.2.123/library/brand-maven-demo:v8 as builder
 
 WORKDIR /app
 
-COPY ./src .
+#COPY ./src .
 
-COPY ./pom.xml .
+#COPY ./pom.xml .
 
-RUN mvn clean package $MAVEN_EXT_PARAM | ts '[%Y-%m-%d %H:%M:%S]' | tee /app/maven/demo-build.log
+#RUN mvn clean package $MAVEN_EXT_PARAM | ts '[%Y-%m-%d %H:%M:%S]' | tee /app/maven/demo-build.log
+
+RUN mvn clean package
 
 FROM openjdk:8-jre
 
