@@ -29,6 +29,9 @@ spec:
             - mountPath: /app/etc/config.properties
               subPath: config.properties
               name: config-cm
+            - mountPath: /app/etc/hetu-metastore.properties
+              subPath: hetu-metastore
+              name: hetu-metastore-cm
       volumes:
         - name: node-cm
           configMap:
@@ -39,6 +42,9 @@ spec:
         - name: config-cm
           configMap:
             name: openlookeng-coordinator-config
+        - name: hetu-metastore-cm
+          configMap:
+            name: openlookeng-hetu-metastore-config
 
 ---
 

@@ -6,7 +6,7 @@ metadata:
 data:
   jvm-options: |
     -server
-    -Xmx16Ga
+    -Xmx16G
     -XX:-UseBiasedLocking
     -XX:+UseG1GC
     -XX:G1HeapRegionSize=32M

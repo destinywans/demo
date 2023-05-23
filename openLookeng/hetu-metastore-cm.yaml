@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openlookeng-hetu-metastore-config
+  namespace: middleware
+data:
+  hetu-metastore: |
+    hetu.metastore.type=hetufilesystem
+    hetu.metastore.hetufilesystem.profile-name=default
+    hetu.metastore.hetufilesystem.path=/tmp/hetu-metastore
