@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openlookeng-coordinator
+  namespace: middleware
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openlookeng-coordinator
+  template:
+    metadata:
+      labels:
+        app: openlookeng-coordinator
+    spec:
+      containers:
+        - image: 10.101.2.123/library/openlookeng:v1.0
+          name: openlookeng-coordinator
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /app/etc/node.properties
+              subPath: node.properties
+              name: node-cm
+            - mountPath: /app/etc/jvm.config
+              subPath: jvm-options
+              name: jvm-cm
+            - mountPath: /app/etc/config.properties
+              subPath: config.properties
+              name: config-cm
+      volumes:
+        - name: node-cm
+          configMap:
+            name: openlookeng-node-config
+        - name: jvm-cm
+          configMap:
+            name: openlookeng-jvm-config
+        - name: config-cm
+          configMap:
+            name: openlookeng-coordinator-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: openlookeng-coordinator
+  namespace: middleware
+spec:
+  type: ClusterIP
+  selector:
+    app: openlookeng-coordinator
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

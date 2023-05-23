@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openlookeng-coordinator-config
+  namespace: middleware
+data:
+  config.properties: |
+    coordinator=true
+    node-scheduler.include-coordinator=false
+    http-server.http.port=8080
+    query.max-memory=50GB
+    query.max-total-memory=50GB
+    query.max-memory-per-node=10GB
+    query.max-total-memory-per-node=10GB
+    discovery-server.enabled=true
+    discovery.uri=http://127.0.0.1:8080
+    experimental.reserved-pool-enabled=false
+    optimizer.join-reordering-strategy=AUTOMATIC
+    join-distribution-type=AUTOMATIC

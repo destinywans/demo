@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openlookeng-node-config
+  namespace: middleware
+data:
+  node.properties: |
+    node.launcher-log-file="/home/openlkadmin/.openlkadmin/logs/launcher.log
+    node.server-log-file=/home/openlkadmin/.openlkadmin/logs/server.log
+    catalog.config-dir=/opt/openlookeng/hetu-server/etc/catalog
+    node.data-dir=/opt/openlookeng/data
+    node.environment=openlookeng
+    plugin.dir=/opt/openlookeng/hetu-server/plugin
