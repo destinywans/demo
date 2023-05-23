@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - image: 10.101.2.123/library/openlookeng:v1.0
+          imagePullPolicy: Always
           name: openlookeng-coordinator
           ports:
             - containerPort: 8080
