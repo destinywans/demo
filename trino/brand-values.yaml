@@ -1,6 +1,9 @@
 additionalCatalogs:
-  mysql: |-
-    connector.name=mysql
-    connection-url=jdbc:mysql://10.101.3.39:3306/movies
+  lakehouse.properties: |-
+    connector.name=iceberg
+    hive.metastore.uri=thrift://example.net:9083
+  rdbms.properties: |-
+    connector.name=postgresql
+    connection-url=jdbc:postgresql://example.net:5432/database
     connection-user=root
-    connection-password=test123456
+    connection-password=secret
