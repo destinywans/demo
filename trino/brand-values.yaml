@@ -7,3 +7,8 @@ additionalCatalogs:
     connection-url=jdbc:postgresql://example.net:5432/database
     connection-user=root
     connection-password=secret
+  mysql.properties: |-
+    connector.name=mysql
+    connection-url=jdbc:mysql://10.101.3.39:3306
+    connection-user=root
+    connection-password=test123456
