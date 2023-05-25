@@ -1,7 +1,7 @@
 additionalCatalogs:
   lakehouse.properties: |-
     connector.name=iceberg
-    hive.metastore.uri=thrift://example.net:9083
+    hive.metastore.uri=thrift://example.net:9084
   rdbms.properties: |-
     connector.name=postgresql
     connection-url=jdbc:postgresql://example.net:5432/database
