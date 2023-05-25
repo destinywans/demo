@@ -1,0 +1,6 @@
+additionalCatalogs:
+  mysql: |-
+    connector.name=mysql
+    connection-url=jdbc:mysql://10.101.3.39:3306/movies
+    connection-user=root
+    connection-password=test123456
