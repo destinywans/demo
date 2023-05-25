@@ -1,0 +1,9 @@
+additionalCatalogs:
+  lakehouse.properties: |-
+    connector.name=iceberg
+    hive.metastore.uri=thrift://example.net:9083
+  rdbms.properties: |-
+    connector.name=postgresql
+    connection-url=jdbc:postgresql://example.net:5432/database
+    connection-user=root
+    connection-password=secret
