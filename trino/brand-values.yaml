@@ -1,6 +1,6 @@
-coordinator:
-  additionalConfigFiles: |-
-    catalog.management=dynamic
+#coordinator:
+#  additionalConfigFiles: |-
+#    catalog.management=dynamic
 additionalCatalogs:
   mysql: |-
     connector.name=mysql
