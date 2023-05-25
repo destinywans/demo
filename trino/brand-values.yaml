@@ -1,6 +1,6 @@
 coordinator:
   additionalConfigFiles:
-    config.properties：'catalog.management=dynamic'
+    "config.properties"：'catalog.management=dynamic'
 additionalCatalogs:
   mysql: |-
     connector.name=mysql
