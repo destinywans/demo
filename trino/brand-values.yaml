@@ -1,4 +1,5 @@
-additionalConfigProperties: {"a": "catalog.management=dynamic"}
+additionalConfigProperties:
+  - "catalog.management=dynamic"
 additionalCatalogs:
   mysql: |-
     connector.name=mysql
