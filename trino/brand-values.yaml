@@ -1,3 +1,7 @@
+server:
+  type: NodePort
+  port: 31808
+
 additionalCatalogs:
   lakehouse.properties: |-
     connector.name=iceberg
