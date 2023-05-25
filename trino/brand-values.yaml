@@ -1,5 +1,6 @@
 coordinator:
-  additionalConfigFiles: {"config.properties": "123=true"}
+  additionalConfigFiles: 
+    "config.properties": "123=true"
 additionalCatalogs:
   mysql: |-
     connector.name=mysql
