@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openldap
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: openldap
+    spec:
+      containers:
+      - image: osixia/openldap
+        name: openldap
+        ports:
+        - containerPort: 389
+        - containerPort: 636
+        env:
+          - name: LDAP_ORGANISATION
+            value: "brandnewdata"
+          - name: LDAP_DOMAIN
+            value: "brandnewdata.com"
+          - name: LDAP_ADMIN_PASSWORD
+            value: "1234qwer"
