@@ -3,13 +3,15 @@ kind: Service
 metadata:
   name: openldap
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: openldap
   ports:
     - name: http
       port: 389
       targetPort: 389
+      nodePort: 1389
     - name: https
       port: 636
       targetPort: 636
+      nodePort: 1636
