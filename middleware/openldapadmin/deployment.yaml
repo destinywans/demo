@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openldapadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openldapadmin
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: openldapadmin
+    spec:
+      containers:
+      - image: osixia/phpldapadmin
+        name: openldapadmin
+        ports:
+        - containerPort: 80
+        env:
+          - name: PHPLDAPADMIN_LDAP_HOSTS
+            value: "openldap"
