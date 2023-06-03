@@ -66,11 +66,11 @@ spec:
   dashboard:
     enabled: true
     # serve the dashboard under a subpath (useful when you are accessing the dashboard via a reverse proxy)
-    urlPrefix: /ceph-dashboard-abc
+    #urlPrefix: /ceph-dashboard-abc
     # serve the dashboard at the given port.
-    port: 7000
+    #port: 7000
     # serve the dashboard using SSL
-    ssl: false
+    #ssl: false
   # enable prometheus alerting for cluster
   monitoring:
     # requires Prometheus to be pre-installed
