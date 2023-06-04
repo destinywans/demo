@@ -1228,8 +1228,10 @@ spec:
   - name: web
     port: 2746
     targetPort: 2746
+    nodePort: 12746
   selector:
     app: argo-server
+  type: NodePort
 ---
 apiVersion: scheduling.k8s.io/v1
 kind: PriorityClass
@@ -1254,6 +1256,7 @@ spec:
       containers:
       - args:
         - server
+        - '--auth-mode=server'
         env: []
         image: quay.io/argoproj/argocli:v3.4.8
         name: argo-server
