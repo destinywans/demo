@@ -109,7 +109,7 @@ spec:
   #           mountPath: /data/mysql
 
   ## Specify additional volume specification
-  # volumeSpec:
+  volumeSpec:
   #   # https://godoc.org/k8s.io/api/core/v1#EmptyDirVolumeSource
   #   emptyDir: {}
 
@@ -124,7 +124,7 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 10Gi
+          storage: 1Gi
 
   ## Specify service objectives
   ## If thoses SLO are not fulfilled by cluster node then that node is
