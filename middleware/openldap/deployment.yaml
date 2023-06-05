@@ -29,13 +29,13 @@ spec:
         volumeMounts:
           - mountPath: /etc/ldap/slapd.d
             name: openldap-pvc
-            subPath: slapd.d
+            subPath: openldap/etc/ldap/slapd.d
           - mountPath: /var/lib/ldap
             name: openldap-pvc
-            subPath: var/lib/ldap
+            subPath: openldap/var/lib/ldap
           - mountPath: /usr/local/ldap
             name: openldap-pvc
-            subPath: usr/local/ldap
+            subPath: openldap/usr/local/ldap
       volumes:
         - name: openldap-pvc
           persistentVolumeClaim:
