@@ -26,3 +26,17 @@ spec:
             value: "brandnewdata.com"
           - name: LDAP_ADMIN_PASSWORD
             value: "1234qwer"
+        volumeMounts:
+          - mountPath: /etc/ldap/slapd.d
+            name: openldap-pvc
+            subPath: slapd.d
+          - mountPath: /var/lib/ldap
+            name: openldap-pvc
+            subPath: var/lib/ldap
+          - mountPath: /usr/local/ldap
+            name: openldap-pvc
+            subPath: usr/local/ldap
+      volumes:
+        - name: openldap-pvc
+          persistentVolumeClaim:
+            claimName: openldap-pvc
