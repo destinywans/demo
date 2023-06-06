@@ -6,7 +6,7 @@ metadata:
     org: brand
     env: dev
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: demo
     env: dev
@@ -14,4 +14,3 @@ spec:
     - name: http
       port: 9060
       targetPort: 9060
-      nodePort: 31065
