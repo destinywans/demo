@@ -22,7 +22,7 @@ spec:
     - port: 7848
       name: old-raft-rpc
       targetPort: 7848
-  clusterIP: None
+#  clusterIP: None
   selector:
     app: nacos
   type: NodePort
