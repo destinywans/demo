@@ -22,10 +22,10 @@ spec:
     - port: 7848
       name: old-raft-rpc
       targetPort: 7848
-#  clusterIP: None
+  clusterIP: None
   selector:
     app: nacos
-  type: NodePort
+#  type: NodePort
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -38,7 +38,7 @@ data:
   mysql.port: "3306"
   mysql.user: "root"
   mysql.password: "1234qwer"
-  mysql.param: "characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true"
+#  mysql.param: "characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true"
 ---
 apiVersion: apps/v1
 kind: StatefulSet
