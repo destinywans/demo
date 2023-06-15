@@ -5,8 +5,8 @@ metadata:
   namespace: argo
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: openebs-hostpath
+    - ReadWriteMany
+  storageClassName: ci-workflows
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
