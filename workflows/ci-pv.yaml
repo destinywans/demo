@@ -12,4 +12,3 @@ spec:
   storageClassName: ci-workflows
   hostPath:
     path: /data/share/ci-workflows
-    type: DirectoryOrCreate
