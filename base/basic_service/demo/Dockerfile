@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM 10.101.2.123/cache/openjdk:8-jre
 
 MAINTAINER wans
 
