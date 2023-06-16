@@ -1223,6 +1223,20 @@ kind: ConfigMap
 metadata:
   name: workflow-controller-configmap
   namespace: argo
+data:
+  instanceID: "brand-ci-controller"
+  artifactRepository: |   
+    archiveLogs: true   
+    s3:     
+      endpoint: rook-ceph-rgw-ceph-os.rook-ceph.svc.cluster.local:80     
+      bucket: argo     
+      insecure: true     
+      accessKeySecret:       
+        name: argo-bucket       
+        key: AWS_ACCESS_KEY_ID     
+      secretKeySecret:       
+        name: argo-bucket
+        key: AWS_SECRET_ACCESS_KEY
 ---
 apiVersion: v1
 kind: Service
