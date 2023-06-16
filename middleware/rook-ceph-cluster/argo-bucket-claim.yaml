@@ -1,7 +1,7 @@
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
-  name: argp-bucket
+  name: argo-bucket
   namespace: argo
 spec:
   bucketName: argo
