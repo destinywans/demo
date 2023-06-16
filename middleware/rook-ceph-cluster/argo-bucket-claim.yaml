@@ -1,8 +1,9 @@
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
-  name: mysql-bucket
+  name: argp-bucket
+  namespace: argo
 spec:
-  bucketName:
-  generateBucketName: mysql
+  bucketName: argo
+  generateBucketName:
   storageClassName: rook-ceph-bucket
