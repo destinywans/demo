@@ -7,7 +7,7 @@ metadata:
     org: brand
   name: demo
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: demo
@@ -22,7 +22,7 @@ spec:
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/demo:v2.0
+      - image: 10.101.2.123/library/demo:v2.4
         name: demo
         ports:
         - containerPort: 9060
