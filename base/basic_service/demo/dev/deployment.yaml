@@ -23,7 +23,11 @@ spec:
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/demo:20230704160512
+      - command:
+        - java
+        - -jar
+        - demo-product-1.0-SNAPSHOT.jar
+        image: 10.101.2.123/library/demo:20230704181811
         name: demo
         ports:
         - containerPort: 9060
