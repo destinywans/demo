@@ -22,7 +22,7 @@ spec:
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/demo:20230704100206
+      - image: 10.101.2.123/library/demo:20230704150441
         name: demo
         ports:
         - containerPort: 9060
