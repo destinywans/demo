@@ -8,7 +8,7 @@ metadata:
   name: demo
   namespace: dev
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: demo
@@ -16,14 +16,14 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: "2023-07-04T02:17:04Z"
+      creationTimestamp: "2023-04-27T10:04:17Z"
       labels:
         app: demo
         env: dev
         org: brand
     spec:
       containers:
-      - image: 10.101.2.123/library/demo:20230704150441
+      - image: 10.101.2.123/library/demo:20230704153428
         name: demo
         ports:
         - containerPort: 9060
