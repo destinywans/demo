@@ -1,13 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: dev
+  creationTimestamp: null
   labels:
     env: dev
     org: brand
   name: demo
+  namespace: dev
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: demo
