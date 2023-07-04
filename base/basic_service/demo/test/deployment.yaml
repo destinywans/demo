@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    env: dev
+    org: brand
+  name: demo
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+      env: dev
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demo
+        env: dev
+        org: brand
+    spec:
+      containers:
+      - image: 10.101.2.123/library/demo:20230704160512
+        name: demo
+        ports:
+        - containerPort: 9060
+        resources: {}
+status: {}
