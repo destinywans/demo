@@ -27,7 +27,7 @@ spec:
         - java
         - -jar
         - demo-product-1.0-SNAPSHOT.jar
-        image: 10.101.2.123/library/demo:20230704181811
+        image: 10.101.2.123/library/demo:20230705093920
         name: demo
         ports:
         - containerPort: 9060
