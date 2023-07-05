@@ -23,9 +23,9 @@ spec:
         org: brand
     spec:
       containers:
-        image: 10.101.2.123/library/demo:20230705093920
-        name: demo
-        ports:
-        - containerPort: 9060
-        resources: {}
+        - image: 10.101.2.123/library/demo:20230705093920
+          name: demo
+          ports:
+          - containerPort: 9060
+          resources: {}
 status: {}
