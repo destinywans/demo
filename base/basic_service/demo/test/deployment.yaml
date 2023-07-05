@@ -6,7 +6,7 @@ metadata:
     env: dev
     org: brand
   name: demo
-  namespace: dev
+  namespace: test
 spec:
   replicas: 1
   selector:
@@ -16,18 +16,14 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: "2023-04-27T10:04:17Z"
+      creationTimestamp: null
       labels:
         app: demo
         env: dev
         org: brand
     spec:
       containers:
-      - command:
-        - java
-        - -jar
-        - demo-product-1.0-SNAPSHOT.jar
-        image: 10.101.2.123/library/demo:20230704181811
+      - image: 10.101.2.123/library/demo:20230704160512
         name: demo
         ports:
         - containerPort: 9060

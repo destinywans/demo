@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: test
+  name: demo
+  labels:
+    org: brand
+    env: dev
+spec:
+  type: ClusterIP
+  selector:
+    app: demo
+    env: dev
+  ports:
+    - name: http
+      port: 9060
+      targetPort: 9060
