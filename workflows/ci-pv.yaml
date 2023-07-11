@@ -11,4 +11,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ci-workflows
   hostPath:
-    path: /data/share/ci-workflows
+    path: /data/front

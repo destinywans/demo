@@ -1,0 +1,108 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  namespace: argo
+  name: frontend-ci-template
+spec:
+  ttlstrategy:
+    secondsAfterCompletion: 300
+  podGC:
+    strategy: OnWorkflowCompletion
+  arguments:
+    parameters:
+      - name: branch
+        value: main
+      - name: artifactBuildArgs
+        value: ""
+      - name: appPath
+        value: ""
+      - name: appName
+        value: ""
+      - name: shellBeforeBuild
+        value: ""
+      - name: shellAfterBuild
+        value: ""
+      - name: tag
+        value: ""
+  entrypoint: main
+  volumeClaimTemplates:
+    - metadata:
+        name: ci-artifact
+        namespace: argo
+      spec:
+        accessModes: [ ReadWriteMany ]
+        storageClassName: rook-cephfs
+        resources:
+          requests:
+            storage: 1Gi
+  templates:
+    - name: main
+      dag:
+        tasks:
+          - name: clone
+            template: clone
+          - name: artifact-build
+            template: artifact-build
+            dependencies:
+              - clone
+    - name: clone
+      container:
+        env:
+          - name: GITLAB_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: gitlab-access-token
+                key: token
+        volumeMounts:
+          - mountPath: /ci/code
+            name: ci-artifact
+            subPath: code
+        image: 10.101.2.123/library/git:2.41.0
+        workingDir: /ci
+        command: [ sh, -euc ]
+        args:
+          - |
+            cd code
+            echo "git clone -v -b {{workflow.parameters.branch}} --single-branch --depth 1"
+            git clone -v -b "{{workflow.parameters.branch}}" --single-branch --depth 1 http://wansheng:$GITLAB_ACCESS_TOKEN@10.101.1.50/{{workflow.parameters.appPath}}.git .
+    - name: artifact-build
+      container:
+        nodeSelector:
+          brand.io/arch: frontend
+        volumeMounts:
+          - mountPath: /ci
+            name: ci-artifact
+            subPath: code
+          - mountPath: /data
+            name: ci
+        #todo 要替换成pnpm的镜像
+        image: 10.101.2.123/library/brand-maven-demo:v8
+        workingDir: /ci
+        command: [ sh, -euc ]
+        args:
+          - |
+            if [ -n "{{workflow.parameters.shellBeforeBuild}}" ]; then
+              {{workflow.parameters.shellBeforeBuild}}
+            fi
+            {{workflow.parameters.artifactBuildArgs}}
+            if [ -n "{{workflow.parameters.shellAfterBuild}}" ]; then
+              {{workflow.parameters.shellAfterBuild}}
+            fi
+            mv dist.zip /data/{{workflow.parameters.appName}}.zip
+            cd /data
+            cp {{workflow.parameters.appName}}.zip {{workflow.parameters.appName}}-{{workflow.parameters.tag}}.zip
+            if [ -d {{workflow.parameters.appName}} ]; then
+              rm -rf {{workflow.parameters.appName}}
+            fi
+            unzip {{workflow.parameters.appName}}.zip
+            rm -rf {{workflow.parameters.appName}}.zip
+  volumes:
+    - name: harbor-secret
+      secret:
+        secretName: harbor-secret
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+    - name: ci
+      persistentVolumeClaim:
+        claimName: ci

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <pluginGroups>
+    </pluginGroups>
+ 
+    <proxies>
+    </proxies>
+ 
+    <servers>
+		<server>
+			<id>nexus-releases</id>
+			<username>admin</username>
+			<password>ysj123++</password>
+		</server>
+		<server>
+			<id>nexus-snapshots</id>
+			<username>admin</username>
+			<password>ysj123++</password>
+		</server>
+    </servers>
+ 
+    <mirrors>
+
+        <mirror>
+            <id>alimaven-central</id>
+            <mirrorOf>central</mirrorOf>
+            <name>aliyun maven</name>
+            <url>https://maven.aliyun.com/repository/central/</url>
+        </mirror>
+
+    </mirrors>
+ 
+    <profiles>
+		<profile>
+			<id>mycof</id>
+			<repositories>
+				<!-- 私有库地址-->
+				<repository>
+					<id>nexus</id>
+					<url>https://nexus.brandnewdata.com/repository/maven-public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>      
+			<pluginRepositories>
+				<!--插件库地址-->
+				<pluginRepository>
+					<id>nexus</id>
+					<url>https://nexus.brandnewdata.com/repository/maven-public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					</pluginRepository>
+			</pluginRepositories>
+		</profile>
+    </profiles>
+ 
+	<activeProfiles>
+		<activeProfile>mycof</activeProfile>
+	</activeProfiles>
+</settings>
+ 
