@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xxl-job
+  namespace: dev
+  labels:
+    app: xxl-job
+spec:
+  type: ClusterIP
+  selector:
+    app: xxl-job
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

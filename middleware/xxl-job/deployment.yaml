@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: xxl-job
+  name: xxl-job
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xxl-job
+  template:
+    metadata:
+      labels:
+        app: xxl-job
+    spec:
+      containers:
+        - image: xuxueli/xxl-job-admin:2.4.0
+          imagePullPolicy: IfNotPresent
+          name: xxl-job
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PARAMS
+              value: "-Dspring.datasource.url=jdbc:mysql://mysql-headless.mysql:3306/xxl_job?Unicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai -Dspring.datasource.username=root -Dspring.datasource.password=1234qwer"
+          volumeMounts:
+            - mountPath: /data/applogs
+              name: xxl-job
+      volumes:
+        - name: xxl-job
+          persistentVolumeClaim:
+            claimName: xxl-job
