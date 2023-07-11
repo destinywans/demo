@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: inner-gateway
+  name: inner-gateway
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inner-gateway
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: inner-gateway
+    spec:
+      containers:
+      - image: 10.101.2.123/library/inner-gateway:20230711031220
+        imagePullPolicy: IfNotPresent
+        name: inner-gateway
+        ports:
+        - containerPort: 9997
+        resources: {}
+status: {}
