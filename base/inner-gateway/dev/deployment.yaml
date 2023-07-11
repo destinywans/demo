@@ -19,7 +19,7 @@ spec:
         app: inner-gateway
     spec:
       containers:
-      - image: 10.101.2.123/library/inner-gateway:20230711030043
+      - image: 10.101.2.123/library/inner-gateway:20230711031220
         imagePullPolicy: IfNotPresent
         name: inner-gateway
         ports:
