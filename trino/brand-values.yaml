@@ -3,6 +3,6 @@ additionalConfigProperties:
 additionalCatalogs:
   mysql: |-
     connector.name=mysql
-    connection-url=jdbc:mysql://10.101.3.39:3306
+    connection-url=jdbc:mysql://mysql-headless.mysql:3306
     connection-user=root
     connection-password=test123456
