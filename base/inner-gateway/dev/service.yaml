@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: inner-gateway
+  namespace: dev
+  labels:
+    app: inner-gateway
+spec:
+  type: ClusterIP
+  selector:
+    app: inner-gateway
+  ports:
+    - name: http
+      port: 9997
+      targetPort: 9997
