@@ -5,4 +5,4 @@ additionalCatalogs:
     connector.name=mysql
     connection-url=jdbc:mysql://mysql-headless.mysql:3306
     connection-user=root
-    connection-password=test123456
+    connection-password=1234qwer
