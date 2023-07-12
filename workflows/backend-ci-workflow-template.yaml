@@ -16,6 +16,8 @@ spec:
         value: ""
       - name: appPath
         value: ""
+      - name: dockerfilePath
+        value: ""
       - name: dockerBuildArgs
         value: ""
       - name: tag
@@ -78,7 +80,7 @@ spec:
             cd dockerfile
             echo "Get Dockerfile from devops-config"
             git clone -v -b main --single-branch --depth 1 http://wansheng:$GITLAB_ACCESS_TOKEN@10.101.1.50/base/devops-config.git .
-            cp {{workflow.parameters.appPath}}/Dockerfile ../code
+            cp {{workflow.parameters.dockerfilePath}} ../code
             cd ..
             rm -rf dockerfile
     - name: artifact-build
