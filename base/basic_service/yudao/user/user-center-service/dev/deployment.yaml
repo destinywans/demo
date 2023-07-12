@@ -1,17 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     app: user-center-service
   name: user-center-service
   namespace: dev
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: user-center-service
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: user-center-service
     spec:
@@ -21,3 +24,5 @@ spec:
         name: user-center-service
         ports:
         - containerPort: 9497
+        resources: {}
+status: {}
