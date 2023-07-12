@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: basic-platform-service
+  name: basic-platform-service
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: basic-platform-service
+  template:
+    metadata:
+      labels:
+        app: basic-platform-service
+    spec:
+      containers:
+      - image: 10.101.2.123/library/basic-platform-service:{{ .tag }}
+        imagePullPolicy: IfNotPresent
+        name: basic-platform-service
+        ports:
+        - containerPort: 8080
