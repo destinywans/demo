@@ -4,7 +4,7 @@ workdir /opt/basic-platform-service
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-copy ./basic-platform-service/basic-platform-service-1.0-SNAPSHOT.jar .
+copy ./basic-platform-service/target/basic-platform-service-1.0-SNAPSHOT.jar .
 
 expose 8080
 
