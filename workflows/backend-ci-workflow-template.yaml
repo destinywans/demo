@@ -5,7 +5,7 @@ metadata:
   name: backend-ci-template
 spec:
   ttlstrategy:
-    secondsAfterCompletion: 300
+    secondsAfterCompletion: 30
   podGC:
     strategy: OnWorkflowCompletion
   arguments:
@@ -97,13 +97,13 @@ spec:
             [ -n "{{workflow.parameters.shellBeforeBuild}}" ] && echo "{{workflow.parameters.shellBeforeBuild}}" | sh
             {{workflow.parameters.artifactBuildArgs}}
             [ -n "{{workflow.parameters.shellAfterBuild}}" ] && echo "{{workflow.parameters.shellAfterBuild}}" | sh
-      outputs:
-        artifacts:
-          - name: maven-repository
-            path: /root/.m2
-            optional: true
-            s3:
-              key: "brand/maven/demo"
+#      outputs:
+#        artifacts:
+#          - name: maven-repository
+#            path: /root/.m2
+#            optional: true
+#            s3:
+#              key: "brand/maven/demo"
     - name: image-build
       container:
         name: kaniko
