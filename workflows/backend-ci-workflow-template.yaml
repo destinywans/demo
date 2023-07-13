@@ -63,6 +63,8 @@ spec:
               secretKeyRef:
                 name: gitlab-access-token
                 key: token
+          - name: TZ
+            value: Asia/Shanghai
         volumeMounts:
           - mountPath: /ci/code
             name: ci-artifact
@@ -85,6 +87,9 @@ spec:
             rm -rf dockerfile
     - name: artifact-build
       container:
+        env:
+          - name: TZ
+            value: Asia/Shanghai
         volumeMounts:
           - mountPath: /ci
             name: ci-artifact
@@ -106,6 +111,9 @@ spec:
 #              key: "brand/maven/demo"
     - name: image-build
       container:
+        env:
+          - name: TZ
+            value: Asia/Shanghai
         name: kaniko
         image: 10.101.2.123/library/kaniko-project/executor:latest
         args:
