@@ -6,7 +6,7 @@ WORKDIR /opt/keycloak
 
 EXPOSE 8080
 
-COPY settings.xml /root/.m2/
+COPY maven-settings.xml /root/.m2/
 
 ENTRYPOINT ["java", "-jar", "-Dfile.encoding=utf-8", "-Duser.timezone=GMT+08", "demo-product-1.0-SNAPSHOT.jar"]
 
