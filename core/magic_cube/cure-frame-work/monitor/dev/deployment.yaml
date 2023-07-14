@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: monitor
+  name: monitor
+  namespace: dev
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: monitor
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: monitor
+    spec:
+      containers:
+      - image: 10.101.2.123/library/monitor:{{ .tag }}
+        imagePullPolicy: IfNotPresent
+        name: monitor
+        ports:
+        - containerPort: 8091
+        resources: {}
+status: {}
