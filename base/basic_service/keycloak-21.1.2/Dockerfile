@@ -1,13 +1,16 @@
 FROM maven:3.6.3-openjdk-11
 
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-WORKDIR /opt/keycloak
+WORKDIR /app
 
 EXPOSE 8080
 
 COPY maven-settings.xml /root/.m2/
 
-ENTRYPOINT ["java", "-jar", "-Dfile.encoding=utf-8", "-Duser.timezone=GMT+08", "demo-product-1.0-SNAPSHOT.jar"]
+COPY quarkus/dist/target/keycloak-21.1.2.tar.gz .
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    tar xfz keycloak-21.1.2.tar.gz
+
+ENTRYPOINT ["/app/keycloak-21.1.2/bin/kc.sh", "start", "--hostname-url=http://10.101.3.200:8080/", "--http-enabled", "true", "--db", "mysql", "--db-url", " jdbc:mysql://mysql-headless.mysql:3306/keycloak_prd", "--db-username", "root", "--db-password", "1234qwer"]
 
 CMD [""]
