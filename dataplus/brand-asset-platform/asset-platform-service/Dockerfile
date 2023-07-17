@@ -4,7 +4,7 @@ workdir /opt/asset-platform-service
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-copy ./basic-platform-service/target/asset-platform-service-1.0-SNAPSHOT.jar .
+copy ./asset-platform-service/target/asset-platform-service-1.0-SNAPSHOT.jar .
 
 expose 9530
 
