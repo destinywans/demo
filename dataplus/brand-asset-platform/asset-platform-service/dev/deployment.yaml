@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     app: asset-platform-service
   name: asset-platform-service
@@ -10,14 +11,18 @@ spec:
   selector:
     matchLabels:
       app: asset-platform-service
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: asset-platform-service
     spec:
       containers:
-      - image: 10.101.2.123/library/asset-platform-service:{{ .tag }}
+      - image: 10.101.2.123/library/asset-platform-service:20230717174600
         imagePullPolicy: IfNotPresent
         name: asset-platform-service
         ports:
         - containerPort: 9530
+        resources: {}
+status: {}
