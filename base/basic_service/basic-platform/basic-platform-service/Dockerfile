@@ -3,7 +3,7 @@ from 10.101.2.123/library/brand-maven-demo:v8
 workdir /opt/basic-platform-service
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    yum -y install fontconfig && fc-cache --force
+    apt-get update && apt-get -y install fontconfig && fc-cache --force
 
 copy ./basic-platform-service/target/basic-platform-service-1.0-SNAPSHOT.jar .
 
