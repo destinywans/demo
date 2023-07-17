@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: asset-platform-service
+  namespace: dev
+  labels:
+    app: asset-platform-service
+spec:
+  type: ClusterIP
+  selector:
+    app: asset-platform-service
+  ports:
+    - name: http
+      port: 9530
+      targetPort: 9530
