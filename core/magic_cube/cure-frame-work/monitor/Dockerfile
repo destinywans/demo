@@ -1,6 +1,6 @@
-# FROM 10.101.2.123/library/brand-maven-demo:v8
+FROM 10.101.2.123/library/brand-maven-demo:v8
 
-FROM 10.101.2.123/cache/gongshu-maven-base:v2.0
+# FROM 10.101.2.123/cache/gongshu-maven-base:v2.0
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
