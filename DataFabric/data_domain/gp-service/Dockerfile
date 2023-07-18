@@ -4,7 +4,7 @@ workdir /opt/gp-service
 
 copy . .
 
-expost 5000
+expose 5000
 
 entrypoint ["python", "app,py"]
 
