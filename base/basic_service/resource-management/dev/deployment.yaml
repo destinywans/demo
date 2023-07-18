@@ -19,7 +19,7 @@ spec:
         app: resource-management
     spec:
       containers:
-      - image: 10.101.2.123/library/resource-management:20230718152009
+      - image: 10.101.2.123/library/resource-management:20230718152234
         imagePullPolicy: IfNotPresent
         name: resource-management
         ports:
