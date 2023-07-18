@@ -19,7 +19,7 @@ spec:
         app: gp-service
     spec:
       containers:
-      - image: 10.101.2.123/library/gp-service:20230718161132
+      - image: 10.101.2.123/library/gp-service:20230718180116
         imagePullPolicy: Always
         name: gp-service
         ports:
