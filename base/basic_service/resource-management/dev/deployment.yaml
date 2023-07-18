@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: resource-management
+  name: resource-management
+  namespace: dev
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: resource-management
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: resource-management
+    spec:
+      containers:
+      - image: 10.101.2.123/library/resource-management:{{ .tag }}
+        imagePullPolicy: IfNotPresent
+        name: resource-management
+        ports:
+        - containerPort: 9500
+        resources: {}
+status: {}
