@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gp-service
+  namespace: dev
+  labels:
+    app: gp-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gp-service
+  template:
+    metadata:
+      labels:
+        app: gp-service
+    spec:
+      containers:
+      - image: 10.101.2.123/library/gp-service:v1.0
+        imagePullPolicy: Always
+        name: gp-service
+        ports:
+          - containerPort: 5000
