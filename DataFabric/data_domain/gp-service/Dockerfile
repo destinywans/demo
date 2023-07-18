@@ -6,6 +6,6 @@ copy . .
 
 expose 5000
 
-entrypoint ["python", "app,py"]
+entrypoint ["python", "app.py"]
 
 cmd [""]
