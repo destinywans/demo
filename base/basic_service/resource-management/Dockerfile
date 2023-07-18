@@ -8,7 +8,7 @@ WORKDIR /opt/resource-management
 
 EXPOSE 9500
 
-COPY .resource-management-service/target/resource-management-service-1.0-SNAPSHOT.jar.
+COPY resource-management-service/target/resource-management-service-1.0-SNAPSHOT.jar .
 
 ENTRYPOINT ["java", "-jar", "-Duser.timezone=Asia/Shanghai", "-Dspring.profiles.active=dev", "-Duser.timezone=GMT+08", "-Djava.security.egd=file:/dev/./urandom", "resource-management-service-1.0.SNAPSHOT.jar"]
 
