@@ -1,9 +1,6 @@
-from 10.101.2.123/library/brand-maven-demo:v8
+from 10.101.2.123/cache/brand-java8-base:v1.0
 
 workdir /opt/basic-platform-service
-
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    apt-get update && apt-get -y install fontconfig && fc-cache --force
 
 copy ./basic-platform-service/target/basic-platform-service-1.0-SNAPSHOT.jar .
 
