@@ -19,7 +19,7 @@ spec:
         app: asset-platform-service
     spec:
       containers:
-      - image: 10.101.2.123/library/asset-platform-service:20230717174600
+      - image: 10.101.2.123/library/asset-platform-service:20230720150235
         imagePullPolicy: IfNotPresent
         name: asset-platform-service
         ports:
