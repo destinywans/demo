@@ -24,6 +24,8 @@ spec:
         value: ""
       - name: tag
         value: ""
+      - name: builderName
+        value: 10.101.2.123/cache/pnpm-base:v1.0
   entrypoint: main
   volumeClaimTemplates:
     - metadata:
@@ -66,36 +68,31 @@ spec:
             echo "git clone -v -b {{workflow.parameters.branch}} --single-branch --depth 1"
             git clone -v -b "{{workflow.parameters.branch}}" --single-branch --depth 1 http://wansheng:$GITLAB_ACCESS_TOKEN@10.101.1.50/{{workflow.parameters.appPath}}.git .
     - name: artifact-build
+      nodeSelector:
+        brand.io/arch: frontend
       container:
-        nodeSelector:
-          brand.io/arch: frontend
         volumeMounts:
           - mountPath: /ci
             name: ci-artifact
             subPath: code
           - mountPath: /data
             name: ci
-        #todo 要替换成pnpm的镜像
-        image: 10.101.2.123/library/brand-maven-demo:v8
+        image: "{{workflow.parameters.builderName}}"
         workingDir: /ci
-        command: [ sh, -euc ]
+        command: [ sh, -c ]
+        env:
+          - name: TZ
+            value: Asia/Shanghai
         args:
           - |
-            if [ -n "{{workflow.parameters.shellBeforeBuild}}" ]; then
-              {{workflow.parameters.shellBeforeBuild}}
-            fi
+            [ -n "{{workflow.parameters.shellBeforeBuild}}" ] && {{workflow.parameters.shellBeforeBuild}}
             {{workflow.parameters.artifactBuildArgs}}
-            if [ -n "{{workflow.parameters.shellAfterBuild}}" ]; then
-              {{workflow.parameters.shellAfterBuild}}
+            [ -n "{{workflow.parameters.shellAfterBuild}}" ] && {{workflow.parameters.shellAfterBuild}}
+            if [ -d /data/dev/{{workflow.parameters.appName}} ]; then
+              rm -rf /data/dev/{{workflow.parameters.appName}}
             fi
-            mv dist.zip /data/{{workflow.parameters.appName}}.zip
-            cd /data
-            cp {{workflow.parameters.appName}}.zip {{workflow.parameters.appName}}-{{workflow.parameters.tag}}.zip
-            if [ -d {{workflow.parameters.appName}} ]; then
-              rm -rf {{workflow.parameters.appName}}
-            fi
-            unzip {{workflow.parameters.appName}}.zip
-            rm -rf {{workflow.parameters.appName}}.zip
+            mkdir -p /data/dev/{{workflow.parameters.appName}}
+            cp -r dist/* /data/dev/{{workflow.parameters.appName}}
   volumes:
     - name: harbor-secret
       secret:
