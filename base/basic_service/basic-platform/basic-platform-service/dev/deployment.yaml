@@ -20,7 +20,7 @@ spec:
         app: basic-platform-service
     spec:
       containers:
-      - image: 10.101.2.123/library/basic-platform-service:20230721100856
+      - image: 10.101.2.123/library/basic-platform-service:20230721142313
         imagePullPolicy: IfNotPresent
         name: basic-platform-service
         ports:
