@@ -1,4 +1,3 @@
-#file: noinspection YAMLSchemaValidation
 #################################################################################################################
 # Define the settings for the rook-ceph cluster with common settings for a production cluster.
 # All nodes with available raw devices will be used for the Ceph cluster. At least three nodes are required
@@ -66,11 +65,11 @@ spec:
   dashboard:
     enabled: true
     # serve the dashboard under a subpath (useful when you are accessing the dashboard via a reverse proxy)
-    #urlPrefix: /ceph-dashboard-abc
+    # urlPrefix: /ceph-dashboard
     # serve the dashboard at the given port.
-    #port: 7000
+    # port: 8443
     # serve the dashboard using SSL
-    #ssl: false
+    ssl: true
   # enable prometheus alerting for cluster
   monitoring:
     # requires Prometheus to be pre-installed
@@ -101,15 +100,15 @@ spec:
     # enable the Multus network provider
     #provider: multus
     #selectors:
-      # The selector keys are required to be `public` and `cluster`.
-      # Based on the configuration, the operator will do the following:
-      #   1. if only the `public` selector key is specified both public_network and cluster_network Ceph settings will listen on that interface
-      #   2. if both `public` and `cluster` selector keys are specified the first one will point to 'public_network' flag and the second one to 'cluster_network'
-      #
-      # In order to work, each selector value must match a NetworkAttachmentDefinition object in Multus
-      #
-      #public: public-conf --> NetworkAttachmentDefinition object name in Multus
-      #cluster: cluster-conf --> NetworkAttachmentDefinition object name in Multus
+    #  The selector keys are required to be `public` and `cluster`.
+    #  Based on the configuration, the operator will do the following:
+    #    1. if only the `public` selector key is specified both public_network and cluster_network Ceph settings will listen on that interface
+    #    2. if both `public` and `cluster` selector keys are specified the first one will point to 'public_network' flag and the second one to 'cluster_network'
+    #
+    #  In order to work, each selector value must match a NetworkAttachmentDefinition object in Multus
+    #
+    #  public: public-conf --> NetworkAttachmentDefinition object name in Multus
+    #  cluster: cluster-conf --> NetworkAttachmentDefinition object name in Multus
     # Provide internet protocol version. IPv6, IPv4 or empty string are valid options. Empty string would mean IPv4
     #ipFamily: "IPv6"
     # Ceph daemons to listen on both IPv4 and Ipv6 networks
@@ -209,26 +208,92 @@ spec:
   #   crashcollector:
   resources:
   #The requests and limits set here, allow the mgr pod to use half of one CPU core and 1 gigabyte of memory
-  #   mgr:
-  #     limits:
-  #       cpu: "500m"
-  #       memory: "1024Mi"
-  #     requests:
-  #       cpu: "500m"
-  #       memory: "1024Mi"
+     mgr:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
   # The above example requests/limits can also be added to the other components
-  #   mon:
-  #   osd:
+     mon:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     osd:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
   # For OSD it also is a possible to specify requests/limits based on device class
-  #   osd-hdd:
-  #   osd-ssd:
-  #   osd-nvme:
-  #   prepareosd:
-  #   mgr-sidecar:
-  #   crashcollector:
-  #   logcollector:
-  #   cleanup:
-  #   exporter:
+     osd-hdd:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     osd-ssd:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     osd-nvme:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     prepareosd:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     mgr-sidecar:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     crashcollector:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     logcollector:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     cleanup:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
+     exporter:
+       limits:
+         cpu: "100m"
+         memory: "256Mi"
+       requests:
+         cpu: "100m"
+         memory: "256Mi"
   # The option to automatically remove OSDs that are out and are safe to destroy.
   removeOSDsIfOutAndSafeToRemove: false
   priorityClassNames:
@@ -238,33 +303,13 @@ spec:
     mgr: system-cluster-critical
     #crashcollector: rook-ceph-crashcollector-priority-class
   storage: # cluster level storage configuration and selection
-    useAllNodes: false
-    useAllDevices: false
-    nodes:
-      - name: "k8s-node1"
-        devices:
-          - name: "sdb"
-      - name: "k8s-node2"
-        devices:
-          - name: "sdb"
-      - name: "k8s-node3"
-        devices:
-          - name: "sdb"
-      - name: "k8s-node4"
-        devices:
-          - name: "sda3"
-      - name: "k8s-node5"
-        devices:
-          - name: "sda3"
-      - name: "k8s-node6"
-        devices:
-          - name: "sda3"
+    useAllNodes: true
+    useAllDevices: true
     #deviceFilter:
     config:
       # crushRoot: "custom-root" # specify a non-default root label for the CRUSH map
       # metadataDevice: "md0" # specify a non-rotational storage so ceph-volume will use it as block db device of bluestore.
       # databaseSizeMB: "1024" # uncomment if the disks are smaller than 100 GB
-      # journalSizeMB: "1024"  # uncomment if the disks are 20 GB or smaller
       # osdsPerDevice: "1" # this value can be overridden at the node or device level
       # encryptedDevice: "true" # the default value for this option is "false"
     # Individual nodes and their config can be specified as well, but 'useAllNodes' above must be set to false. Then, only the named
