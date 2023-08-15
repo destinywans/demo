@@ -231,69 +231,69 @@ spec:
          cpu: "100m"
          memory: "256Mi"
   # For OSD it also is a possible to specify requests/limits based on device class
-     osd-hdd:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     osd-ssd:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     osd-nvme:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     prepareosd:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     mgr-sidecar:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     crashcollector:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     logcollector:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     cleanup:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
-     exporter:
-       limits:
-         cpu: "100m"
-         memory: "256Mi"
-       requests:
-         cpu: "100m"
-         memory: "256Mi"
+#     osd-hdd:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     osd-ssd:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     osd-nvme:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     prepareosd:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     mgr-sidecar:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     crashcollector:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     logcollector:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     cleanup:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
+#     exporter:
+#       limits:
+#         cpu: "100m"
+#         memory: "256Mi"
+#       requests:
+#         cpu: "100m"
+#         memory: "256Mi"
   # The option to automatically remove OSDs that are out and are safe to destroy.
   removeOSDsIfOutAndSafeToRemove: false
   priorityClassNames:
